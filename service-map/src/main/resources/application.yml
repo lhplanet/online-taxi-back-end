@@ -1,0 +1,18 @@
+server:
+  port: 8085
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/service-map?characterEncoding=UTF-8&serverTimezone=GMT&2B8
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: service-map
+# 自定义的 key : value
+amap:
+  key: 78462a297c925d75cbfbf4e58c8e1b95
+  sid: 975798 # 高德地图的服务id：（服务名称）网约车出行service

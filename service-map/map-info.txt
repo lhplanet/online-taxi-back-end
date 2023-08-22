@@ -1,0 +1,46 @@
+key：
+78462a297c925d75cbfbf4e58c8e1b95
+
+服务创建：
+{
+    "data": {
+        "name": "网约车出行service",
+        "sid": 975798
+    },
+    "errcode": 10000,
+    "errdetail": null,
+    "errmsg": "OK"
+}
+
+
+终端创建：
+{
+    "data": {
+        "name": "车辆1",
+        "tid": 726795814,
+        "sid": 975798
+    },
+    "errcode": 10000,
+    "errdetail": null,
+    "errmsg": "OK"
+}
+
+轨迹创建：
+{
+    "data": {
+        "trname": "轨迹1",
+        "trid": 40
+    },
+    "errcode": 10000,
+    "errdetail": null,
+    "errmsg": "OK"
+}
+{
+    "data": {
+        "trname": "轨迹2",
+        "trid": 60
+    },
+    "errcode": 10000,
+    "errdetail": null,
+    "errmsg": "OK"
+}
