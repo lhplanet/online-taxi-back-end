@@ -1,9 +1,12 @@
 package com.sdu.apipassenger.controller;
 
 import com.sdu.apipassenger.service.UserService;
+import com.sdu.internalcommon.dto.DriverUser;
 import com.sdu.internalcommon.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,4 +32,13 @@ public class UserController {
         return userService.getUserByAccessToken(accessToken);
     }
 
+    /**
+     * 根据乘客手机号查询司机信息
+     * @param passengerPhone
+     * @return
+     */
+    @GetMapping("/user")
+    public ResponseResult getUser(String passengerPhone){
+        return userService.getUser(passengerPhone);
+    }
 }

@@ -73,6 +73,18 @@ public class DriverUserService {
         return ResponseResult.success("");
     }
 
+    /**
+     * 根据司机手机号查询司机信息
+     * @param driverPhone 司机手机号
+     * @return 响应结果
+     */
+    public ResponseResult getDriverUser(String driverPhone){
+        Map<String,Object> map = new HashMap<>();
+        map.put("driver_phone", driverPhone);
+        DriverUser driverUser = driverUserMapper.selectByMap(map).get(0);
+        return ResponseResult.success(driverUser);
+    }
+
     public ResponseResult<DriverUser> getDriverUserByPhone(String driverPhone){
         Map<String,Object> map = new HashMap<>();
         map.put("driver_phone", driverPhone);

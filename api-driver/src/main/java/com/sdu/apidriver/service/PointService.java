@@ -28,11 +28,17 @@ public class PointService {
         // 获取carId
         Long carId = apiDriverPointRequest.getCarId();
 
-        // 通过carId 获取 tid、trid，调用 service-driver-user的接口
+        System.out.println("==================carId: " + carId);
+
+        // 通过carId 获取 tid、trid，调用 email-driver-user的接口
         ResponseResult<Car> carById = serviceDriverUserClient.getCarById(carId);
         Car car = carById.getData();
         String tid = car.getTid();
         String trid = car.getTrid();
+
+        System.out.println("==================tid: " + tid);
+        System.out.println("==================trid: " + trid);
+        System.out.println("==================car: " + car);
 
         // 调用地图去上传
         PointRequest pointRequest = new PointRequest();

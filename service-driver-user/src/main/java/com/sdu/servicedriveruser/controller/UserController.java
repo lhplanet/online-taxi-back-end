@@ -47,12 +47,23 @@ public class UserController {
     }
 
     /**
-     * 查询司机，如果需要按照司机的多个条件做查询，那么此处用 /user
+     * 根据司机手机号查询司机信息
+     * @param driverPhone 司机手机号
+     * @return 响应结果
+     */
+    @GetMapping("/user")
+    public ResponseResult getUser(@RequestParam("driverPhone") String driverPhone){
+        return driverUserService.getDriverUser(driverPhone);
+    }
+
+
+    /**
+     * 查询司机是否存在，如果需要按照司机的多个条件做查询，那么此处用 /user
      * @param driverPhone 司机手机号
      * @return 响应结果
      */
     @GetMapping("/check-driver/{driverPhone}")
-    public ResponseResult<DriverUserExistsResponse> getUser(@PathVariable("driverPhone") String driverPhone){
+    public ResponseResult<DriverUserExistsResponse> checkDriver(@PathVariable("driverPhone") String driverPhone){
 
         ResponseResult<DriverUser> driverUserByPhone = driverUserService.getDriverUserByPhone(driverPhone);
         DriverUser driverUserDb = driverUserByPhone.getData();

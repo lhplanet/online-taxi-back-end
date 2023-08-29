@@ -15,12 +15,12 @@ public class MysqlGenerator {
 
     public static void main(String[] args) {
 
-        FastAutoGenerator.create("jdbc:mysql://localhost:3306/service-price?characterEncoding=utf-8&serverTimezone=GMT%2B8", "root","123456")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/email-price?characterEncoding=utf-8&serverTimezone=GMT%2B8", "root","123456")
                 .globalConfig(builder -> {
-                    builder.author("李浩鹏").fileOverride().outputDir("E:\\Project\\CourseDesign\\online-taxi\\online-taxi-back-end\\service-price\\src\\main\\java");
+                    builder.author("李浩鹏").fileOverride().outputDir("E:\\Project\\CourseDesign\\online-taxi\\online-taxi-back-end\\email-price\\src\\main\\java");
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.sdu.serviceprice").pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\Project\\CourseDesign\\online-taxi\\online-taxi-back-end\\service-price\\src\\main\\java\\com\\sdu\\serviceprice\\mapper"));
+                    builder.parent("com.sdu.serviceprice").pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\Project\\CourseDesign\\online-taxi\\online-taxi-back-end\\email-price\\src\\main\\java\\com\\sdu\\serviceprice\\mapper"));
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("price_rule");

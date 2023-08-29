@@ -4,16 +4,13 @@ import com.sdu.internalcommon.dto.PassengerUser;
 import com.sdu.internalcommon.dto.ResponseResult;
 import com.sdu.internalcommon.request.VerificationCodeDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author LHP
  * @description 远程调用service-passenger-user服务
  */
-@FeignClient(name = "service-passenger-user")
+@FeignClient(name = "email-passenger-user")
 public interface ServicePassengerUserClient {
 
     /**
@@ -29,5 +26,6 @@ public interface ServicePassengerUserClient {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/user/{phone}") // 防止feign的post转get的bug
     public ResponseResult<PassengerUser> getUserByPhone(@PathVariable("phone") String phone);
+
 
 }

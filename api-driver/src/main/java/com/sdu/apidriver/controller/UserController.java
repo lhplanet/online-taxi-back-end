@@ -31,8 +31,21 @@ public class UserController {
         return userService.updateUser(driverUser);
     }
 
+    /**
+     * 根据司机手机号查询司机信息
+     * @param driverPhone
+     * @return
+     */
+    @GetMapping("/user")
+    public ResponseResult getUser(Long driverPhone){
+        return userService.getUser(driverPhone);
+    }
+
     @PostMapping("/driver-user-work-status")
     public ResponseResult changeWorkStatus(@RequestBody DriverUserWorkStatus driverUserWorkStatus){
+
+        System.out.println("==============driverId = " + driverUserWorkStatus.getDriverId());
+        System.out.println("==============workStatus = " + driverUserWorkStatus.getWorkStatus());
 
         return userService.changeWorkStatus(driverUserWorkStatus);
     }

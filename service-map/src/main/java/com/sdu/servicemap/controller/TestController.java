@@ -22,7 +22,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "test service-map";
+        return "test email-map";
     }
 
     @Autowired
@@ -34,7 +34,7 @@ public class TestController {
         map.put("address_code", "110000");
         List<DicDistrict> dicDistricts = dicDistrictMapper.selectByMap(map);
         System.out.println(dicDistricts);
-        return "test service-map";
+        return "test email-map";
     }
 
 }

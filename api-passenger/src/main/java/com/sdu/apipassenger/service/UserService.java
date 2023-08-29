@@ -39,4 +39,10 @@ public class UserService {
         return ResponseResult.success(userByPhone.getData());
     }
 
+    public ResponseResult getUser(String passengerPhone){
+//        ResponseResult<PassengerUser> userByPhone = servicePassengerUserClient.getUserByPhone(passengerPhone);
+//        return ResponseResult.success(userByPhone.getData());
+        return servicePassengerUserClient.getUserByPhone(passengerPhone);
+    }
+
 }

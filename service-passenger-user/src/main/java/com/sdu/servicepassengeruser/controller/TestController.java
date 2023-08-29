@@ -14,7 +14,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "test service-passenger-user";
+        return "test email-passenger-user";
     }
 
 }
