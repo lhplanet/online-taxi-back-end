@@ -3,6 +3,7 @@ package com.sdu.servicedriveruser.controller;
 
 import com.sdu.internalcommon.dto.DriverCarBindingRelationship;
 import com.sdu.internalcommon.dto.ResponseResult;
+import com.sdu.internalcommon.result.ResultVo;
 import com.sdu.servicedriveruser.service.DriverCarBindingRelationshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +25,12 @@ public class DriverCarBindingRelationshipController {
     DriverCarBindingRelationshipService driverCarBindingRelationshipService;
 
     @PostMapping("/bind")
-    public ResponseResult bind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship){
+    public ResultVo bind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship){
         return driverCarBindingRelationshipService.bind(driverCarBindingRelationship);
     }
 
     @PostMapping("/unbind")
-    public ResponseResult unbind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship){
+    public ResultVo unbind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship){
         return driverCarBindingRelationshipService.unbind(driverCarBindingRelationship);
     }
 

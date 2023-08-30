@@ -6,6 +6,8 @@ import com.sdu.internalcommon.constant.DriverCarConstants;
 import com.sdu.internalcommon.dto.DriverCarBindingRelationship;
 import com.sdu.internalcommon.dto.DriverUser;
 import com.sdu.internalcommon.dto.ResponseResult;
+import com.sdu.internalcommon.result.ResultUtils;
+import com.sdu.internalcommon.result.ResultVo;
 import com.sdu.servicedriveruser.mapper.DriverCarBindingRelationshipMapper;
 import com.sdu.servicedriveruser.mapper.DriverUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class DriverCarBindingRelationshipService {
     @Autowired
     DriverUserMapper driverUserMapper;
 
-    public ResponseResult bind(DriverCarBindingRelationship driverCarBindingRelationship){
+    public ResultVo bind(DriverCarBindingRelationship driverCarBindingRelationship){
         // 判断，如果参数中的车辆和司机，已经做过绑定，则不允许再次绑定
         QueryWrapper<DriverCarBindingRelationship> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("driver_id",driverCarBindingRelationship.getDriverId());
@@ -39,7 +41,7 @@ public class DriverCarBindingRelationshipService {
 
         Long l = driverCarBindingRelationshipMapper.selectCount(queryWrapper);
         if (l.intValue() > 0){
-            return ResponseResult.fail(CommonStatusEnum.DRIVER_CAR_BIND_EXISTS.getCode(),CommonStatusEnum.DRIVER_CAR_BIND_EXISTS.getValue());
+            return ResultUtils.error("该司机与该车辆已绑定！");
         }
 
         // 司机被绑定了
@@ -48,7 +50,7 @@ public class DriverCarBindingRelationshipService {
         queryWrapper.eq("binding_state",DriverCarConstants.DRIVER_CAR_BIND);
         l = driverCarBindingRelationshipMapper.selectCount(queryWrapper);
         if (l.intValue() > 0){
-            return ResponseResult.fail(CommonStatusEnum.DRIVER_BIND_EXISTS.getCode(),CommonStatusEnum.DRIVER_BIND_EXISTS.getValue());
+            return ResultUtils.error("该司机已绑定其他车辆！");
         }
 
         // 车辆被绑定了
@@ -57,7 +59,21 @@ public class DriverCarBindingRelationshipService {
         queryWrapper.eq("binding_state",DriverCarConstants.DRIVER_CAR_BIND);
         l = driverCarBindingRelationshipMapper.selectCount(queryWrapper);
         if ((l.intValue() > 0)){
-            return ResponseResult.fail(CommonStatusEnum.CAR_BIND_EXISTS.getCode(),CommonStatusEnum.CAR_BIND_EXISTS.getValue());
+            return ResultUtils.error("该车辆已被其他司机绑定！");
+        }
+
+        // 之前有绑定记录，但是已经解绑了
+        queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("driver_id",driverCarBindingRelationship.getDriverId());
+        queryWrapper.eq("car_id",driverCarBindingRelationship.getCarId());
+        queryWrapper.eq("binding_state",DriverCarConstants.DRIVER_CAR_UNBIND);
+        l = driverCarBindingRelationshipMapper.selectCount(queryWrapper);
+        if (l.intValue() > 0){
+            DriverCarBindingRelationship driverCarBindingRelationship1 = driverCarBindingRelationshipMapper.selectOne(queryWrapper);
+            driverCarBindingRelationship1.setBindingState(DriverCarConstants.DRIVER_CAR_BIND);
+            driverCarBindingRelationship1.setBindingTime(LocalDateTime.now());
+            driverCarBindingRelationshipMapper.updateById(driverCarBindingRelationship1);
+            return ResultUtils.success("绑定成功！");
         }
 
         LocalDateTime now = LocalDateTime.now();
@@ -66,12 +82,12 @@ public class DriverCarBindingRelationshipService {
         driverCarBindingRelationship.setBindingState(DriverCarConstants.DRIVER_CAR_BIND);
 
         driverCarBindingRelationshipMapper.insert(driverCarBindingRelationship);
-        return ResponseResult.success("");
+        return ResultUtils.success("绑定成功！");
 
     }
 
 
-    public ResponseResult unbind(DriverCarBindingRelationship driverCarBindingRelationship){
+    public ResultVo unbind(DriverCarBindingRelationship driverCarBindingRelationship){
         LocalDateTime now = LocalDateTime.now();
 
         Map<String,Object> map = new HashMap<>();
@@ -81,7 +97,7 @@ public class DriverCarBindingRelationshipService {
 
         List<DriverCarBindingRelationship> driverCarBindingRelationships = driverCarBindingRelationshipMapper.selectByMap(map);
         if (driverCarBindingRelationships.isEmpty()){
-            return ResponseResult.fail(CommonStatusEnum.DRIVER_CAR_BIND_NOT_EXISTS.getCode(),CommonStatusEnum.DRIVER_CAR_BIND_NOT_EXISTS.getValue());
+            return ResultUtils.error("该司机与该车辆未绑定！");
         }
 
         DriverCarBindingRelationship relationship = driverCarBindingRelationships.get(0);
@@ -89,7 +105,7 @@ public class DriverCarBindingRelationshipService {
         relationship.setUnBindingTime(now);
 
         driverCarBindingRelationshipMapper.updateById(relationship);
-        return ResponseResult.success("");
+        return ResultUtils.success("解绑成功！");
 
     }
 

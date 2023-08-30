@@ -1,5 +1,6 @@
 package com.sdu.internalcommon.dto;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -55,5 +56,12 @@ public class DriverUser {
     private LocalDateTime gmtCreate;
 //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime gmtModified;
+
+    @TableField(exist = false)
+    private String vehicleNo;
+    @TableField(exist = false)
+    private String carId;
+    @TableField(exist = false)
+    private String bindingState;
 
 }

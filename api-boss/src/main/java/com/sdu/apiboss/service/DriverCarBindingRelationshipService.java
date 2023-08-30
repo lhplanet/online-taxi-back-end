@@ -3,6 +3,7 @@ package com.sdu.apiboss.service;
 import com.sdu.apiboss.remote.ServiceDriverUserClient;
 import com.sdu.internalcommon.dto.DriverCarBindingRelationship;
 import com.sdu.internalcommon.dto.ResponseResult;
+import com.sdu.internalcommon.result.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,11 @@ public class DriverCarBindingRelationshipService {
     ServiceDriverUserClient serviceDriverUserClient;
 
 
-    public ResponseResult bind(DriverCarBindingRelationship driverCarBindingRelationship){
+    public ResultVo bind(DriverCarBindingRelationship driverCarBindingRelationship){
         return serviceDriverUserClient.bind(driverCarBindingRelationship);
     }
 
-    public ResponseResult unbind(DriverCarBindingRelationship driverCarBindingRelationship) {
+    public ResultVo unbind(DriverCarBindingRelationship driverCarBindingRelationship) {
 
         return serviceDriverUserClient.unbind(driverCarBindingRelationship);
     }

@@ -3,13 +3,16 @@
 <mapper namespace="com.sdu.servicedriveruser.mapper.DriverUserMapper">
 
     <select id="getDriverUserList" parameterType="com.sdu.internalcommon.dto.DriverUser" resultType="com.sdu.internalcommon.dto.DriverUser">
-        select * from driver_user
+        select du.*, c.vehicle_no, c.id as car_id, dcbr.binding_state
+        from driver_user as du
+        left join driver_car_binding_relationship as dcbr on du.id = dcbr.driver_id
+        left join car as c on dcbr.car_id = c.id
         where 1=1
         <if test="para.driverPhone != null and para.driverPhone !=''">
-            and driver_phone like concat('%',#{para.driverPhone},'%')
+            and du.driver_phone like concat('%',#{para.driverPhone},'%')
         </if>
         <if test="para.driverName != null and para.driverName !=''">
-            and driver_name like concat('%',#{para.driverName},'%')
+            and du.driver_name like concat('%',#{para.driverName},'%')
         </if>
     </select>
 
