@@ -1,15 +1,15 @@
 package com.sdu.apipassenger.controller;
 
 import com.sdu.apipassenger.service.UserService;
-import com.sdu.internalcommon.dto.DriverUser;
+import com.sdu.internalcommon.dto.PassengerUser;
 import com.sdu.internalcommon.dto.ResponseResult;
+import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author LHP
@@ -18,10 +18,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @RestController
+@Slf4j
 public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     @GetMapping("/users")
     public ResponseResult getUsers(HttpServletRequest request) {

@@ -14,7 +14,7 @@ import java.util.List;
  * @author LHP
  * @description 远程调用service-driver-user服务
  */
-@FeignClient("service-driver-user")
+@FeignClient(name = "service-driver-user-1", url = "http://localhost:8086")
 public interface ServiceDriverUserClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/user")
@@ -29,8 +29,7 @@ public interface ServiceDriverUserClient {
     @RequestMapping(method = RequestMethod.POST, value = "/user/list")
     public List<DriverUser> getDriverUser(@RequestBody DriverUser driverUser);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/car")
-    public ResponseResult addCar(@RequestBody Car car);
+
 
     @RequestMapping(method = RequestMethod.POST,value = "/driver-car-binding-relationship/bind")
     public ResponseResult bind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship);

@@ -64,21 +64,17 @@ public class DriverUserService {
         return true;
     }
 
+    /**
+     * 编辑司机信息
+     * @param driverUser 司机信息
+     * @return 响应结果
+     */
     public boolean updateDriverUser(DriverUser driverUser){
         LocalDateTime now = LocalDateTime.now();
         driverUser.setGmtModified(now);
 
         driverUserMapper.updateById(driverUser);
         return true;
-    }
-
-    /**
-     * 查询司机信息
-     * @param driverUser 司机信息
-     * @return 响应结果
-     */
-    public List<DriverUser> getDriverUser(DriverUser driverUser){
-        return driverUserMapper.getDriverUserList(driverUser);
     }
 
     /**
@@ -91,6 +87,17 @@ public class DriverUserService {
         // TODO: 删除司机工作状态表（级联删除）或是直接将司机状态改为无效
         return true;
     }
+
+    /**
+     * 查询司机列表
+     * @param driverUser 司机信息
+     * @return 响应结果
+     */
+    public List<DriverUser> getDriverUser(DriverUser driverUser){
+        return driverUserMapper.getDriverUserList(driverUser);
+    }
+
+
 
     public ResponseResult<DriverUser> getDriverUserByPhone(String driverPhone){
         Map<String,Object> map = new HashMap<>();

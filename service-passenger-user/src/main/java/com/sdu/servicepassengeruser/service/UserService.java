@@ -22,6 +22,59 @@ public class UserService {
     @Autowired
     private PassengerUserMapper passengerUserMapper;
 
+
+    /**
+     * 添加乘客
+     * @param passengerUser 乘客信息
+     * @return 响应结果
+     */
+    public boolean addPassengerUser(PassengerUser passengerUser){
+
+        LocalDateTime now = LocalDateTime.now();
+        passengerUser.setGmtCreate(now);
+        passengerUser.setGmtModified(now);
+
+        // TODO: 是否要加上判断创建成功与否
+        passengerUserMapper.insert(passengerUser);
+
+        return true;
+    }
+
+    /**
+     * 编辑乘客信息
+     * @param passengerUser 乘客信息
+     * @return 响应结果
+     */
+    public boolean updatePassengerUser(PassengerUser passengerUser){
+        LocalDateTime now = LocalDateTime.now();
+        passengerUser.setGmtModified(now);
+
+        passengerUserMapper.updateById(passengerUser);
+        return true;
+    }
+
+    /**
+     * 删除乘客信息
+     * @param passengerId 乘客id
+     * @return 响应结果
+     */
+    public boolean deletePassengerUser(Long passengerId){
+        passengerUserMapper.deleteById(passengerId);
+        // TODO: 删除乘客工作状态表（级联删除）或是直接将乘客状态改为无效
+        return true;
+    }
+
+    /**
+     * 查询乘客列表
+     * @param passengerUser 乘客信息
+     * @return 响应结果
+     */
+    public List<PassengerUser> getPassengerUser(PassengerUser passengerUser){
+        return passengerUserMapper.getPassengerUserList(passengerUser);
+    }
+
+
+
     public ResponseResult loginOrRegister(String passengerPhone) {
 
         // 根据手机号查询用户信息

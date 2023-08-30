@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdu.servicepassengeruser.mapper.PassengerUserMapper">
+
+    <select id="getPassengerUserList" parameterType="com.sdu.internalcommon.dto.PassengerUser" resultType="com.sdu.internalcommon.dto.PassengerUser">
+        select * from passenger_user
+        where 1=1
+        <if test="para.passengerPhone != null and para.passengerPhone !=''">
+            and passenger_phone like concat('%',#{para.passengerPhone},'%')
+        </if>
+        <if test="para.passengerName != null and para.passengerName !=''">
+            and passenger_name like concat('%',#{para.passengerName},'%')
+        </if>
+    </select>
+
+</mapper>

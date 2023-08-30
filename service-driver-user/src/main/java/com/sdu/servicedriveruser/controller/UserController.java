@@ -54,15 +54,16 @@ public class UserController {
         return driverUserService.updateDriverUser(driverUser);
     }
 
+    @DeleteMapping("/user")
+    public boolean deleteDriverUser(@RequestBody Long driverId){
+        return driverUserService.deleteDriverUser(driverId);
+    }
+
     @PostMapping("/user/list")
     public List<DriverUser> getUser(@RequestBody DriverUser driverUser){
         return driverUserService.getDriverUser(driverUser);
     }
 
-    @DeleteMapping("/user")
-    public boolean deleteDriverUser(@RequestBody Long driverId){
-        return driverUserService.deleteDriverUser(driverId);
-    }
 
     /**
      * 查询司机是否存在，如果需要按照司机的多个条件做查询，那么此处用 /user

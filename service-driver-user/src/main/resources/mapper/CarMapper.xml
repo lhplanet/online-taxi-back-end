@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdu.servicedriveruser.mapper.CarMapper">
+
+    <select id="getCarList" parameterType="com.sdu.internalcommon.dto.Car" resultType="com.sdu.internalcommon.dto.Car">
+        select * from car
+        where 1=1
+        <if test="para.vehicleNo != null and para.vehicleNo !=''">
+            and vehicle_no like concat('%',#{para.vehicleNo},'%')
+        </if>
+        <if test="para.ownerName != null and para.ownerName !=''">
+            and owner_name like concat('%',#{para.ownerName},'%')
+        </if>
+    </select>
+
+
+
+</mapper>

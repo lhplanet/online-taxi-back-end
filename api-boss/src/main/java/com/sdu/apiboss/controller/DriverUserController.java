@@ -71,11 +71,37 @@ public class DriverUserController {
         return ResultUtils.success("删除成功!");
     }
 
-
+    /**
+     * 查询司机列表
+     * @param driverUser 司机信息
+     * @return 响应结果
+     */
     @PostMapping("/list")
     public ResultVo getDriverUser(@RequestBody DriverUser driverUser){
         List<DriverUser> list = driverUserService.getDriverUser(driverUser);
         return  ResultUtils.success("查询成功", list);
     }
+
+    /**
+     * 查询司机信息
+     * @param driverId 司机id
+     * @return 响应结果
+     */
+/*    @GetMapping("/{driverId}")
+    public ResultVo getDriverUserById(@PathVariable("driverId") Long driverId){
+        DriverUser driverUser = driverUserService.getDriverUserById(driverId);
+        return  ResultUtils.success("查询成功", driverUser);
+    }*/
+
+    /**
+     * 查询司机信息
+     * @param driverPhone 司机手机号
+     * @return 响应结果
+     */
+/*    @GetMapping("/phone/{driverPhone}")
+    public ResultVo getDriverUserByPhone(@PathVariable("driverPhone") String driverPhone){
+        DriverUser driverUser = driverUserService.getDriverUserByPhone(driverPhone);
+        return  ResultUtils.success("查询成功", driverUser);
+    }*/
 
 }

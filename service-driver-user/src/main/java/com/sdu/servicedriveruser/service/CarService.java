@@ -27,7 +27,7 @@ public class CarService {
     @Autowired
     private ServiceMapClient serviceMapClient;
 
-    public ResponseResult addCar(Car car){
+    public boolean addCar(Car car){
         LocalDateTime now = LocalDateTime.now();
         car.setGmtCreate(now);
         car.setGmtModified(now);
@@ -49,8 +49,42 @@ public class CarService {
 
         carMapper.updateById(car);
 
-        return ResponseResult.success("");
+        return true;
     }
+
+    /**
+     * 编辑车辆信息
+     * @param car 车辆信息
+     * @return 响应结果
+     */
+    public boolean updateCar(Car car){
+        LocalDateTime now = LocalDateTime.now();
+        car.setGmtModified(now);
+
+        carMapper.updateById(car);
+        return true;
+    }
+
+    /**
+     * 删除车辆
+     * @param carId 车辆id
+     * @return 响应结果
+     */
+    public boolean deleteCar(Long carId){
+        carMapper.deleteById(carId);
+        // TODO: 删除终端和轨迹
+        return true;
+    }
+
+    /**
+     * 查询车辆列表
+     * @param car 车辆信息
+     * @return 响应结果
+     */
+    public List<Car> getCar(Car car){
+        return carMapper.getCarList(car);
+    }
+
 
     public ResponseResult<Car> getCarById(Long id){
         Map<String,Object> map = new HashMap<>();
