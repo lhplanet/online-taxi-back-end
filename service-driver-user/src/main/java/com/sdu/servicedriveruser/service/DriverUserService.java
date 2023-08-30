@@ -12,7 +12,6 @@ import com.sdu.servicedriveruser.mapper.DriverUserWorkStatusMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +43,7 @@ public class DriverUserService {
      * @param driverUser 司机信息
      * @return 响应结果
      */
-    public ResponseResult addDriverUser(DriverUser driverUser){
+    public boolean addDriverUser(DriverUser driverUser){
 
         LocalDateTime now = LocalDateTime.now();
         driverUser.setGmtCreate(now);
@@ -62,27 +61,35 @@ public class DriverUserService {
         // TODO: 是否要加上判断创建成功与否
         driverUserWorkStatusMapper.insert(driverUserWorkStatus);
 
-        return ResponseResult.success("");
+        return true;
     }
 
-    public ResponseResult updateDriverUser(DriverUser driverUser){
+    public boolean updateDriverUser(DriverUser driverUser){
         LocalDateTime now = LocalDateTime.now();
         driverUser.setGmtModified(now);
 
         driverUserMapper.updateById(driverUser);
-        return ResponseResult.success("");
+        return true;
     }
 
     /**
-     * 根据司机手机号查询司机信息
-     * @param driverPhone 司机手机号
+     * 查询司机信息
+     * @param driverUser 司机信息
      * @return 响应结果
      */
-    public ResponseResult getDriverUser(String driverPhone){
-        Map<String,Object> map = new HashMap<>();
-        map.put("driver_phone", driverPhone);
-        DriverUser driverUser = driverUserMapper.selectByMap(map).get(0);
-        return ResponseResult.success(driverUser);
+    public List<DriverUser> getDriverUser(DriverUser driverUser){
+        return driverUserMapper.getDriverUserList(driverUser);
+    }
+
+    /**
+     * 删除司机信息
+     * @param driverId 司机id
+     * @return 响应结果
+     */
+    public boolean deleteDriverUser(Long driverId){
+        driverUserMapper.deleteById(driverId);
+        // TODO: 删除司机工作状态表（级联删除）或是直接将司机状态改为无效
+        return true;
     }
 
     public ResponseResult<DriverUser> getDriverUserByPhone(String driverPhone){

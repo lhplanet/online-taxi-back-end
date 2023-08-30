@@ -22,8 +22,8 @@ public class UserService {
         return serviceDriverUserClient.updateUser(driverUser);
     }
 
-    public ResponseResult getUser(Long driverPhone){
-        return serviceDriverUserClient.getUser(driverPhone);
+    public ResponseResult getUser(DriverUser driverUser){
+        return serviceDriverUserClient.getUser(driverUser);
     }
 
     public ResponseResult changeWorkStatus(DriverUserWorkStatus driverUserWorkStatus){

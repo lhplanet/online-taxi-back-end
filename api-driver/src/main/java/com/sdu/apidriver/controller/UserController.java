@@ -32,13 +32,13 @@ public class UserController {
     }
 
     /**
-     * 根据司机手机号查询司机信息
-     * @param driverPhone
+     * 查询司机信息
+     * @param driverUser
      * @return
      */
     @GetMapping("/user")
-    public ResponseResult getUser(Long driverPhone){
-        return userService.getUser(driverPhone);
+    public ResponseResult getUser(@RequestBody DriverUser driverUser){
+        return userService.getUser(driverUser);
     }
 
     @PostMapping("/driver-user-work-status")

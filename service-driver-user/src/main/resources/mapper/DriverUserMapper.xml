@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdu.servicedriveruser.mapper.DriverUserMapper">
 
+    <select id="getDriverUserList" parameterType="com.sdu.internalcommon.dto.DriverUser" resultType="com.sdu.internalcommon.dto.DriverUser">
+        select * from driver_user
+        where 1=1
+        <if test="para.driverPhone != null and para.driverPhone !=''">
+            and driver_phone like concat('%',#{para.driverPhone},'%')
+        </if>
+        <if test="para.driverName != null and para.driverName !=''">
+            and driver_name like concat('%',#{para.driverName},'%')
+        </if>
+    </select>
+
+
     <select id="selectDriverUserCountByCityCode" parameterType="java.lang.String" resultType="java.lang.Integer">
         select count(*) from v_city_driver_user_work_status where city_code = #{cityCode}
     </select>

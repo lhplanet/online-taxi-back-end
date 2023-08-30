@@ -38,6 +38,12 @@ public class ResponseResult<T> {
                 .setData(data);
     }
 
+    public static <T> ResponseResult success(String message, T data) {
+        return new ResponseResult().setCode(CommonStatusEnum.SUCCESS.getCode())
+                .setMessage(message)
+                .setData(data);
+    }
+
     /**
      * 失败：统一的失败
      * @param data

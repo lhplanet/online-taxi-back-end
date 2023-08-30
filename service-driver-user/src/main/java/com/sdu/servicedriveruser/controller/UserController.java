@@ -1,17 +1,25 @@
 package com.sdu.servicedriveruser.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sdu.internalcommon.constant.DriverCarConstants;
 import com.sdu.internalcommon.dto.DriverCarBindingRelationship;
 import com.sdu.internalcommon.dto.DriverUser;
 import com.sdu.internalcommon.dto.ResponseResult;
 import com.sdu.internalcommon.response.DriverUserExistsResponse;
 import com.sdu.internalcommon.response.OrderDriverResponse;
+import com.sdu.internalcommon.result.ResultUtils;
+import com.sdu.internalcommon.result.ResultVo;
 import com.sdu.servicedriveruser.service.DriverCarBindingRelationshipService;
 import com.sdu.servicedriveruser.service.DriverUserService;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author LHP
@@ -30,7 +38,7 @@ public class UserController {
      * @return 响应结果
      */
     @PostMapping("/user")
-    public ResponseResult addUser(@RequestBody DriverUser driverUser){
+    public boolean addUser(@RequestBody DriverUser driverUser){
         log.info(JSONObject.fromObject(driverUser).toString());
         return driverUserService.addDriverUser(driverUser);
     }
@@ -41,21 +49,20 @@ public class UserController {
      * @return 响应结果
      */
     @PutMapping("/user")
-    public ResponseResult updateUser(@RequestBody DriverUser driverUser){
+    public boolean updateUser(@RequestBody DriverUser driverUser){
         log.info(JSONObject.fromObject(driverUser).toString());
         return driverUserService.updateDriverUser(driverUser);
     }
 
-    /**
-     * 根据司机手机号查询司机信息
-     * @param driverPhone 司机手机号
-     * @return 响应结果
-     */
-    @GetMapping("/user")
-    public ResponseResult getUser(@RequestParam("driverPhone") String driverPhone){
-        return driverUserService.getDriverUser(driverPhone);
+    @PostMapping("/user/list")
+    public List<DriverUser> getUser(@RequestBody DriverUser driverUser){
+        return driverUserService.getDriverUser(driverUser);
     }
 
+    @DeleteMapping("/user")
+    public boolean deleteDriverUser(@RequestBody Long driverId){
+        return driverUserService.deleteDriverUser(driverId);
+    }
 
     /**
      * 查询司机是否存在，如果需要按照司机的多个条件做查询，那么此处用 /user

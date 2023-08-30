@@ -12,8 +12,8 @@ public enum CommonStatusEnum {
         /**
         * 通用状态
         */
-        SUCCESS(1, "success"), // 成功
-        FAIL(0, "fail"), // 失败
+        SUCCESS(1, "成功"), // 成功
+        FAIL(0, "失败"), // 失败
         VERIFICATION_CODE_ERROR(1099, "验证码错误"), // 验证码错误：1000-1099
         TOKEN_ERROR(1199, "token错误"), // token错误：1100-1199
         USER_NOT_EXISTS(1299, "当前用户不存在"), // 用户不存在：1200-1299

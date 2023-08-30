@@ -16,7 +16,7 @@ public interface ServiceDriverUserClient {
     public ResponseResult updateUser(@RequestBody DriverUser driverUser);
 
     @RequestMapping(method = RequestMethod.GET, value = "/user")
-    public ResponseResult getUser(@RequestParam Long driverPhone);
+    public ResponseResult getUser(@RequestBody DriverUser driverUser);
 
     @RequestMapping(method = RequestMethod.GET, value = "/check-driver/{driverPhone}")
     public ResponseResult<DriverUserExistsResponse> checkDriver(@PathVariable("driverPhone") String driverPhone);
