@@ -30,7 +30,7 @@ public class PointService {
 
         System.out.println("==================carId: " + carId);
 
-        // 通过carId 获取 tid、trid，调用 email-driver-user的接口
+        // 通过carId 获取 tid、trid，调用 service-driver-user的接口
         ResponseResult<Car> carById = serviceDriverUserClient.getCarById(carId);
         Car car = carById.getData();
         String tid = car.getTid();

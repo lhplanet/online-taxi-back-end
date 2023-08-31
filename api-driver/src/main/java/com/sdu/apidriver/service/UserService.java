@@ -22,6 +22,11 @@ public class UserService {
         return serviceDriverUserClient.updateUser(driverUser);
     }
 
+    /**
+     * （根据手机号）查询司机信息
+     * @param driverUser
+     * @return
+     */
     public ResponseResult getUser(DriverUser driverUser){
         return serviceDriverUserClient.getUser(driverUser);
     }

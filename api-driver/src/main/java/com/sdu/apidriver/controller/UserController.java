@@ -6,6 +6,7 @@ import com.sdu.internalcommon.dto.DriverUserWorkStatus;
 import com.sdu.internalcommon.dto.ResponseResult;
 import com.sdu.internalcommon.dto.TokenResult;
 import com.sdu.internalcommon.util.JwtUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @description 司机用户控制类
  */
 @RestController
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -32,12 +34,13 @@ public class UserController {
     }
 
     /**
-     * 查询司机信息
+     * （根据手机号）查询司机信息
      * @param driverUser
      * @return
      */
-    @GetMapping("/user")
+    @GetMapping("/user-info")
     public ResponseResult getUser(@RequestBody DriverUser driverUser){
+        System.out.println("==============driverUser = " + driverUser.getDriverPhone());
         return userService.getUser(driverUser);
     }
 

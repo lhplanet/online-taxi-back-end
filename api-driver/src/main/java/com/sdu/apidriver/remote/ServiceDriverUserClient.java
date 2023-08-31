@@ -15,6 +15,11 @@ public interface ServiceDriverUserClient {
     @RequestMapping(method = RequestMethod.PUT, value = "/user")
     public ResponseResult updateUser(@RequestBody DriverUser driverUser);
 
+    /**
+     * （根据手机号）查询司机信息
+     * @param driverUser
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/user")
     public ResponseResult getUser(@RequestBody DriverUser driverUser);
 

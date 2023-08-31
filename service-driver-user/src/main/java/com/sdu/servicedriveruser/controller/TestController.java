@@ -21,7 +21,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
-        return "test email-driver-user";
+        return "test service-driver-user";
     }
 
     @GetMapping("/test-db")

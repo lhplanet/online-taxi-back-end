@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @author LHP
  * @description 远程调用service-passenger-user服务
  */
-@FeignClient(name = "email-passenger-user")
+@FeignClient(name = "service-passenger-user")
 public interface ServicePassengerUserClient {
 
     /**

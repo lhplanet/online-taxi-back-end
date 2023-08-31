@@ -34,7 +34,7 @@ public class OrderInfoController {
 //        String deviceCode = httpServletRequest.getHeader(HeaderParamConstants.DEVICE_CODE);
 //        orderRequest.setDeviceCode(deviceCode);
 
-        log.info("email-order"+orderRequest.getAddress());
+        log.info("service-order"+orderRequest.getAddress());
         return orderInfoService.add(orderRequest);
     }
 

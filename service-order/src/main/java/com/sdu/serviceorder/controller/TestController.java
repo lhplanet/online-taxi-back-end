@@ -20,7 +20,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
-        return "test email-order";
+        return "test service-order";
     }
 
     @Autowired
@@ -39,7 +39,7 @@ public class TestController {
      */
     @GetMapping("/test-real-time-order/{orderId}")
     public String dispatchRealTimeOrder(@PathVariable("orderId") long orderId){
-        System.out.println("email-order 端口："+ port+" 并发测试：orderId："+orderId);
+        System.out.println("service-order 端口："+ port+" 并发测试：orderId："+orderId);
         OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
         orderInfoService.dispatchRealTimeOrder(orderInfo);
         return "test-real-time-order   success";

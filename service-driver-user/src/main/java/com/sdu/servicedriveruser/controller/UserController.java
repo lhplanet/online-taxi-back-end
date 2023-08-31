@@ -60,8 +60,21 @@ public class UserController {
     }
 
     @PostMapping("/user/list")
-    public List<DriverUser> getUser(@RequestBody DriverUser driverUser){
+    public List<DriverUser> getUserList(@RequestBody DriverUser driverUser){
         return driverUserService.getDriverUser(driverUser);
+    }
+
+    /**
+     * （根据手机号）查询司机信息
+     * @param driverUser
+     * @return
+     */
+    @GetMapping("/user")
+    public ResponseResult getUser(@RequestBody DriverUser driverUser){
+        // 根据手机号查询司机信息
+        ResponseResult<DriverUser> driverUserByPhone = driverUserService.getDriverUserByPhone(driverUser.getDriverPhone());
+        DriverUser driverUserDb = driverUserByPhone.getData();
+        return ResponseResult.success(driverUserDb);
     }
 
 
