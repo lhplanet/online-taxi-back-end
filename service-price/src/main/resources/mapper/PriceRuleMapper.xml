@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdu.serviceprice.mapper.PriceRuleMapper">
+
+    <select id="getPriceRuleList" parameterType="com.sdu.internalcommon.dto.PriceRule" resultType="com.sdu.internalcommon.dto.PriceRule">
+        select * from price_rule
+        where 1=1
+        <if test="para.cityCode != null and para.cityCode !=''">
+            and city_code like concat('%',#{para.cityCode},'%')
+        </if>
+        <if test="para.vehicleType != null and para.vehicleType !=''">
+            and vehicle_type like concat('%',#{vehicleType},'%')
+        </if>
+        order by city_code ASC, vehicle_type ASC, fare_version DESC
+    </select>
+
+
+
+</mapper>

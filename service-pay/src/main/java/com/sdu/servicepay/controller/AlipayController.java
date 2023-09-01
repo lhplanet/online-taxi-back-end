@@ -45,6 +45,7 @@ public class AlipayController {
         System.out.println("支付宝回调 notify");
         String tradeStatus = request.getParameter("trade_status");
 
+        // 交易成功
         if (tradeStatus.trim().equals("TRADE_SUCCESS")){
             Map<String,String> param = new HashMap<>();
 
@@ -53,6 +54,7 @@ public class AlipayController {
                 param.put(name,request.getParameter(name));
             }
 
+            // 验证签名
             if (Factory.Payment.Common().verifyNotify(param)){
                 System.out.println("通过支付宝的验证");
 
@@ -61,12 +63,15 @@ public class AlipayController {
 
                 alipayService.pay(orderId);
 
+                // 返回成功结果，通知支付宝
+                return "success";
+
             }else {
                 System.out.println("支付宝验证 不通过！");
             }
 
         }
 
-        return "success";
+        return "failure"; // 返回失败结果，通知支付宝
     }
 }

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sdu.internalcommon.constant.CommonStatusEnum;
 import com.sdu.internalcommon.dto.PriceRule;
 import com.sdu.internalcommon.dto.ResponseResult;
+import com.sdu.internalcommon.result.ResultUtils;
+import com.sdu.internalcommon.result.ResultVo;
 import com.sdu.serviceprice.mapper.PriceRuleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ public class PriceRuleService {
     @Autowired
     PriceRuleMapper priceRuleMapper;
 
-    public ResponseResult add(PriceRule priceRule) {
+    public ResultVo addPriceRule(PriceRule priceRule) {
 
         // 拼接fareType
         String cityCode = priceRule.getCityCode();
@@ -39,16 +41,16 @@ public class PriceRuleService {
         List<PriceRule> priceRules = priceRuleMapper.selectList(queryWrapper);
         Integer fareVersion = 0;
         if (priceRules.size() > 0) {
-            return ResponseResult.fail(CommonStatusEnum.PRICE_RULE_EXISTS.getCode(), CommonStatusEnum.PRICE_RULE_EXISTS.getValue());
+            return ResultUtils.error("新增失败：已存在该计价规则");
         }
         priceRule.setFareVersion(++fareVersion);
 
 
         priceRuleMapper.insert(priceRule);
-        return ResponseResult.success();
+        return ResultUtils.success("新增成功");
     }
 
-    public ResponseResult edit(PriceRule priceRule){
+    public boolean updatePriceRule(PriceRule priceRule){
         // 拼接fareType
         String cityCode = priceRule.getCityCode();
         String vehicleType = priceRule.getVehicleType();
@@ -76,7 +78,7 @@ public class PriceRuleService {
                     && unitPricePerMinute.doubleValue() == priceRule.getUnitPricePerMinute().doubleValue()
                     && startFare.doubleValue() == priceRule.getStartFare().doubleValue()
                     && startMile.intValue() == priceRule.getStartMile().intValue()){
-                return ResponseResult.fail(CommonStatusEnum.PRICE_RULE_NOT_EDIT.getCode(),CommonStatusEnum.PRICE_RULE_NOT_EDIT.getValue());
+                return false;
             }
 
 
@@ -86,7 +88,20 @@ public class PriceRuleService {
 
 
         priceRuleMapper.insert(priceRule);
-        return ResponseResult.success();
+        return true;
+    }
+
+    public boolean deletePriceRule(PriceRule priceRule){
+        QueryWrapper<PriceRule> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("fare_type",priceRule.getFareType());
+        queryWrapper.eq("fare_version",priceRule.getFareVersion());
+
+        priceRuleMapper.delete(queryWrapper);
+        return true;
+    }
+
+    public List<PriceRule> getPriceRuleList(PriceRule priceRule) {
+        return priceRuleMapper.getPriceRuleList(priceRule);
     }
 
 

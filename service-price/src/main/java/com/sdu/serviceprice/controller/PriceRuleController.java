@@ -3,9 +3,12 @@ package com.sdu.serviceprice.controller;
 import com.sdu.internalcommon.dto.PriceRule;
 import com.sdu.internalcommon.dto.ResponseResult;
 import com.sdu.internalcommon.request.PriceRuleIsNewRequest;
+import com.sdu.internalcommon.result.ResultVo;
 import com.sdu.serviceprice.service.PriceRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author LHP
@@ -19,13 +22,23 @@ public class PriceRuleController {
     PriceRuleService priceRuleService;
 
     @PostMapping("/add")
-    public ResponseResult add(@RequestBody PriceRule priceRule){
-        return priceRuleService.add(priceRule);
+    public ResultVo addPriceRule(@RequestBody PriceRule priceRule){
+        return priceRuleService.addPriceRule(priceRule);
     }
 
-    @PostMapping("/edit")
-    public ResponseResult edit(@RequestBody PriceRule priceRule){
-        return priceRuleService.edit(priceRule);
+    @PostMapping("/update")
+    public boolean updatePriceRule(@RequestBody PriceRule priceRule){
+        return priceRuleService.updatePriceRule(priceRule);
+    }
+
+    @DeleteMapping("/delete")
+    public boolean deleteRequestBody(@RequestBody PriceRule priceRule){
+        return priceRuleService.deletePriceRule(priceRule);
+    }
+
+    @PostMapping("/list")
+    public List<PriceRule> getPriceRuleList(@RequestBody PriceRule priceRule){
+        return priceRuleService.getPriceRuleList(priceRule);
     }
 
     /**
