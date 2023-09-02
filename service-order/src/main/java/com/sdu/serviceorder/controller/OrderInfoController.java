@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author LHP
@@ -125,6 +126,11 @@ public class OrderInfoController {
     @GetMapping("/current")
     public ResponseResult current(String phone , String identity){
         return orderInfoService.current(phone , identity);
+    }
+
+    @PostMapping("/list")
+    public List<OrderInfo> getOrderList(@RequestBody OrderInfo orderInfo){
+        return orderInfoService.getOrderList(orderInfo);
     }
 
 }

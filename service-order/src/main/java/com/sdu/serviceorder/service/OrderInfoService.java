@@ -674,4 +674,8 @@ public class OrderInfoService {
         return ResponseResult.success(orderInfo);
     }
 
+    public List<OrderInfo> getOrderList(OrderInfo orderInfo) {
+        return orderInfoMapper.getOrderList(orderInfo);
+    }
+
 }
