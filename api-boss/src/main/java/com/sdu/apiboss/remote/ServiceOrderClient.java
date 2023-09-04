@@ -13,7 +13,7 @@ import java.util.List;
  * @author LHP
  * @description
  */
-@FeignClient("service-order")
+@FeignClient(name = "service-order-1", url = "http://localhost:8089")
 public interface ServiceOrderClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/order/list")

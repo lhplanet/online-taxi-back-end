@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdu.serviceorder.mapper.EvaluateMapper">
+
+    <select id="getEvaluateList" parameterType="com.sdu.internalcommon.dto.EvaluateVo" resultType="com.sdu.internalcommon.dto.EvaluateVo">
+        select e.*, o.passenger_phone, o.driver_phone
+        from evaluate as e
+        left join order_info as o on e.order_id = o.id
+        where 1=1
+        <if test="para.orderId != null and para.orderId !=''">
+            and e.order_id like concat('%',#{para.orderId},'%')
+        </if>
+        <if test="para.rating != null and para.rating !='' and para.rating != 0">
+            and e.rating = #{para.rating}
+        </if>
+        <if test="para.passengerPhone != null and para.passengerPhone !=''">
+            and o.passenger_phone like concat('%',#{para.passengerPhone},'%')
+        </if>
+        <if test="para.driverPhone != null and para.driverPhone !=''">
+            and o.driver_phone like concat('%',#{para.driverPhone},'%')
+        </if>
+    </select>
+
+
+
+</mapper>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @author LHP
  * @description 调用远程service-order服务
  */
-@FeignClient("service-order")
+@FeignClient(name = "service-order-3", url = "http://localhost:8089")
 public interface ServiceOrderClient {
 
     @RequestMapping(method = RequestMethod.POST, value = "/order/add")
