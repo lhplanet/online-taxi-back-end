@@ -112,6 +112,16 @@ public class DriverUserService {
         return ResponseResult.success(driverUser);
     }
 
+    public ResponseResult<DriverUser> getDriverUserById(DriverInfoVo driverInfoVo){
+        DriverUser driverUser = driverUserMapper.selectById(driverInfoVo.getDriverId());
+        return ResponseResult.success(driverUser);
+    }
+
+//    public ResponseResult<DriverUser> getDriverUserById(String driverId){
+//        DriverUser driverUser = driverUserMapper.selectById(driverId);
+//        return ResponseResult.success(driverUser);
+//    }
+
     @Autowired
     DriverCarBindingRelationshipMapper driverCarBindingRelationshipMapper;
 

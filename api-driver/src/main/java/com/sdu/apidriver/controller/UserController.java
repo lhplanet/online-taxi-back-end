@@ -1,10 +1,7 @@
 package com.sdu.apidriver.controller;
 
 import com.sdu.apidriver.service.UserService;
-import com.sdu.internalcommon.dto.DriverUser;
-import com.sdu.internalcommon.dto.DriverUserWorkStatus;
-import com.sdu.internalcommon.dto.ResponseResult;
-import com.sdu.internalcommon.dto.TokenResult;
+import com.sdu.internalcommon.dto.*;
 import com.sdu.internalcommon.util.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +31,21 @@ public class UserController {
     }
 
     /**
-     * （根据手机号）查询司机信息
-     * @param driverUser
+     * （根据司机id）查询司机信息
+     * @param driverInfoVo
      * @return
      */
-    @GetMapping("/user-info")
-    public ResponseResult getUser(@RequestBody DriverUser driverUser){
-        System.out.println("==============driverUser = " + driverUser.getDriverPhone());
-        return userService.getUser(driverUser);
+    @PostMapping("/user-info")
+    public ResponseResult getUser(@RequestBody DriverInfoVo driverInfoVo){
+//        System.out.println("==============driverUser = " + driverInfoVo.getDriverPhone());
+        return userService.getUser(driverInfoVo);
     }
+
+//    @GetMapping("/driver-info")
+//    public ResponseResult getDriver(Long driverId){
+////        System.out.println("==============driverUser = " + driverUser.getDriverPhone());
+//        return userService.getDriverById(driverId);
+//    }
 
     @PostMapping("/driver-user-work-status")
     public ResponseResult changeWorkStatus(@RequestBody DriverUserWorkStatus driverUserWorkStatus){
@@ -67,6 +70,11 @@ public class UserController {
 
         return userService.getDriverCarBindingRelationship(driverPhone);
 
+    }
+
+    @GetMapping("/get-car-info")
+    public ResponseResult getCarInfo(Long carId){
+        return userService.getCarInfo(carId);
     }
 
     @GetMapping("/work-status")

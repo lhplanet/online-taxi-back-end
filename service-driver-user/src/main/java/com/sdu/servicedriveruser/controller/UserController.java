@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sdu.internalcommon.constant.DriverCarConstants;
 import com.sdu.internalcommon.dto.DriverCarBindingRelationship;
+import com.sdu.internalcommon.dto.DriverInfoVo;
 import com.sdu.internalcommon.dto.DriverUser;
 import com.sdu.internalcommon.dto.ResponseResult;
 import com.sdu.internalcommon.response.DriverUserExistsResponse;
@@ -65,17 +66,25 @@ public class UserController {
     }
 
     /**
-     * （根据手机号）查询司机信息
-     * @param driverUser
+     * （根据司机id）查询司机信息
+     * @param
      * @return
      */
-    @GetMapping("/user")
-    public ResponseResult getUser(@RequestBody DriverUser driverUser){
+    @PostMapping("/user-info")
+    public ResponseResult getUser(@RequestBody DriverInfoVo driverInfoVo){
         // 根据手机号查询司机信息
-        ResponseResult<DriverUser> driverUserByPhone = driverUserService.getDriverUserByPhone(driverUser.getDriverPhone());
-        DriverUser driverUserDb = driverUserByPhone.getData();
+        ResponseResult<DriverUser> driverUserById = driverUserService.getDriverUserById(driverInfoVo);
+        DriverUser driverUserDb = driverUserById.getData();
         return ResponseResult.success(driverUserDb);
     }
+
+//    @GetMapping("/driver/{driverId}")
+//    public ResponseResult getDriverById(@PathVariable("driverId") Long driverId){
+//        // 根据手机号查询司机信息
+//        ResponseResult<DriverUser> driverUserById = driverUserService.getDriverUserById(driverId.toString());
+//        DriverUser driverUserDb = driverUserById.getData();
+//        return ResponseResult.success(driverUserDb);
+//    }
 
 
     /**

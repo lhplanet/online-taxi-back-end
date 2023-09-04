@@ -1,10 +1,7 @@
 package com.sdu.apidriver.service;
 
 import com.sdu.apidriver.remote.ServiceDriverUserClient;
-import com.sdu.internalcommon.dto.DriverCarBindingRelationship;
-import com.sdu.internalcommon.dto.DriverUser;
-import com.sdu.internalcommon.dto.DriverUserWorkStatus;
-import com.sdu.internalcommon.dto.ResponseResult;
+import com.sdu.internalcommon.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +20,17 @@ public class UserService {
     }
 
     /**
-     * （根据手机号）查询司机信息
-     * @param driverUser
+     * （根据司机id）查询司机信息
+     * @param driverInfoVo
      * @return
      */
-    public ResponseResult getUser(DriverUser driverUser){
-        return serviceDriverUserClient.getUser(driverUser);
+    public ResponseResult getUser(DriverInfoVo driverInfoVo){
+        return serviceDriverUserClient.getUser(driverInfoVo);
     }
+
+//    public ResponseResult getDriverById(Long driverId){
+//        return serviceDriverUserClient.getDriverById(driverId);
+//    }
 
     public ResponseResult changeWorkStatus(DriverUserWorkStatus driverUserWorkStatus){
         return serviceDriverUserClient.changeWorkStatus(driverUserWorkStatus);
@@ -38,10 +39,15 @@ public class UserService {
     public ResponseResult<DriverCarBindingRelationship> getDriverCarBindingRelationship(String driverPhone){
         // 根据driverPhone查询司机信息
         return serviceDriverUserClient.getDriverCarRelationShip(driverPhone);
+    }
 
+    public ResponseResult<Car> getCarInfo(Long carId) {
+        return serviceDriverUserClient.getCarById(carId);
     }
 
     public ResponseResult<DriverUserWorkStatus> getWorkStatus(Long driverId){
         return serviceDriverUserClient.getWorkStatus(driverId);
     }
+
+
 }

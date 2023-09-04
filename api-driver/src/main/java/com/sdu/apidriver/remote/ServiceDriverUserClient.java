@@ -16,12 +16,15 @@ public interface ServiceDriverUserClient {
     public ResponseResult updateUser(@RequestBody DriverUser driverUser);
 
     /**
-     * （根据手机号）查询司机信息
-     * @param driverUser
+     * （根据司机id）查询司机信息
+     * @param driverInfoVo
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, value = "/user")
-    public ResponseResult getUser(@RequestBody DriverUser driverUser);
+    @RequestMapping(method = RequestMethod.POST, value = "/user-info")
+    public ResponseResult getUser(@RequestBody DriverInfoVo driverInfoVo);
+
+//    @RequestMapping(method = RequestMethod.GET, value = "/driver")
+//    public ResponseResult getDriverById(@RequestParam Long driverId);
 
     @RequestMapping(method = RequestMethod.GET, value = "/check-driver/{driverPhone}")
     public ResponseResult<DriverUserExistsResponse> checkDriver(@PathVariable("driverPhone") String driverPhone);
