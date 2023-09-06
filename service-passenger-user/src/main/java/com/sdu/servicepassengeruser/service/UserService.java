@@ -118,4 +118,8 @@ public class UserService {
         }
     }
 
+    public int getPassengerCount() {
+        return passengerUserMapper.getPassengerCount();
+    }
+
 }

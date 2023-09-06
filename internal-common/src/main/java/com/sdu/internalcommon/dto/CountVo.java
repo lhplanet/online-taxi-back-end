@@ -8,8 +8,8 @@ import lombok.Data;
  */
 @Data
 public class CountVo {
-    private int stuCount;
-    private int classCount;
-    private int majorCount;
-    private int teacherCount;
+    private int driverCount;
+    private int passengerCount;
+    private int carCount;
+    private int orderCount;
 }

@@ -16,4 +16,5 @@ public interface PassengerUserMapper extends BaseMapper<PassengerUser> {
 
     public List<PassengerUser> getPassengerUserList(@Param("para") PassengerUser para);
 
+    public int getPassengerCount();
 }

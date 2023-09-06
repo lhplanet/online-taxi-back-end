@@ -36,4 +36,7 @@ public interface ServiceDriverUserClient {
 
     @RequestMapping(method = RequestMethod.POST,value = "/driver-car-binding-relationship/unbind")
     public ResultVo unbind(DriverCarBindingRelationship driverCarBindingRelationship);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/user/driver-count")
+    public int getDriverCount();
 }

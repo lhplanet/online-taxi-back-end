@@ -100,4 +100,8 @@ public class CarService {
 
     }
 
+    public int getCarCount(){
+        return carMapper.getCarCount();
+    }
+
 }

@@ -16,4 +16,6 @@ public interface OrderInfoMapper extends BaseMapper<OrderInfo> {
 
     public List<OrderInfo> getOrderList(@Param("para") OrderInfo para);
 
+    public int getOrderCount();
+
 }

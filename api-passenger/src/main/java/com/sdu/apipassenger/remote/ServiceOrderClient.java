@@ -3,6 +3,7 @@ package com.sdu.apipassenger.remote;
 import com.sdu.internalcommon.dto.OrderInfo;
 import com.sdu.internalcommon.dto.ResponseResult;
 import com.sdu.internalcommon.request.OrderRequest;
+import com.sdu.internalcommon.request.PushRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

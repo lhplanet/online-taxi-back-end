@@ -46,4 +46,9 @@ public class CarController {
         return carService.getCarById(carId);
     }
 
+    @GetMapping("/car/car-count")
+    public int getCarCount(){
+        return carService.getCarCount();
+    }
+
 }

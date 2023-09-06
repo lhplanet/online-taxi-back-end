@@ -11,8 +11,15 @@
         <if test="para.driverPhone != null and para.driverPhone !=''">
             and driver_phone like concat('%',#{para.driverPhone},'%')
         </if>
+        <if test="para.id != null and para.id !=''">
+            and id = #{para.id}
+        </if>
+        order by id desc
     </select>
 
+    <select id="getOrderCount" resultType="java.lang.Integer">
+        select count(*) from order_info
+    </select>
 
 
 </mapper>

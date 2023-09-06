@@ -60,4 +60,14 @@ public class OrderController {
 
         return orderService.currentOrder(phone,IdentityConstants.PASSENGER_IDENTITY);
     }
+
+
+
+
+    @PostMapping("/pd-begin")
+    public ResponseResult pdBegin(@RequestParam Long driverId){
+        return orderService.pdBegin(driverId);
+    }
+
+
 }

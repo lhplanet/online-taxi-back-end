@@ -28,4 +28,6 @@ public interface ServicePassengerUserClient {
     @RequestMapping(method = RequestMethod.POST, value = "/user/list")
     public List<PassengerUser> getPassengerUser(@RequestBody PassengerUser passengerUser);
 
+    @RequestMapping(method = RequestMethod.GET, value = "/user/passenger-count")
+    public int getPassengerCount();
 }

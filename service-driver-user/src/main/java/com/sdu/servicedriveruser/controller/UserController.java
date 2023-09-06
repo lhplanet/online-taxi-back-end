@@ -136,4 +136,10 @@ public class UserController {
         return driverCarBindingRelationshipService.getDriverCarRelationShipByDriverPhone(driverPhone);
     }
 
+    @GetMapping("/user/driver-count")
+    public int getDriverCount(){
+        return driverUserService.getDriverCount();
+    }
+
+
 }

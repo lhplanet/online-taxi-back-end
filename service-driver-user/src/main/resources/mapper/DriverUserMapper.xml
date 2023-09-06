@@ -21,4 +21,8 @@
         select count(*) from v_city_driver_user_work_status where city_code = #{cityCode}
     </select>
 
+    <select id="getDriverCount" resultType="java.lang.Integer">
+        select count(*) from driver_user where state = 0
+    </select>
+
 </mapper>

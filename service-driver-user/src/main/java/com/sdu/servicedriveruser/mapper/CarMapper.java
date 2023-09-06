@@ -16,4 +16,6 @@ public interface CarMapper extends BaseMapper<Car> {
 
     public List<Car> getCarList(@Param("para") Car para);
 
+    public int getCarCount();
+
 }

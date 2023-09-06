@@ -19,4 +19,7 @@ public interface ServiceOrderClient {
     @RequestMapping(method = RequestMethod.POST, value = "/order/list")
     public List<OrderInfo> getOrderList(@RequestBody OrderInfo orderInfo);
 
+    @RequestMapping(method = RequestMethod.GET, value = "/order/order-count")
+    public int getOrderCount();
+
 }

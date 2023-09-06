@@ -13,4 +13,8 @@
         </if>
     </select>
 
+    <select id="getPassengerCount" resultType="java.lang.Integer">
+        select count(*) from passenger_user where state = 0
+    </select>
+
 </mapper>

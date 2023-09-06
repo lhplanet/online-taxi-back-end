@@ -678,4 +678,8 @@ public class OrderInfoService {
         return orderInfoMapper.getOrderList(orderInfo);
     }
 
+    public int getOrderCount() {
+        return orderInfoMapper.getOrderCount();
+    }
+
 }

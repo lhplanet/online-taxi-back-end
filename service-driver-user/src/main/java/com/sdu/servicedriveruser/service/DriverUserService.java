@@ -72,7 +72,6 @@ public class DriverUserService {
     public boolean updateDriverUser(DriverUser driverUser){
         LocalDateTime now = LocalDateTime.now();
         driverUser.setGmtModified(now);
-
         driverUserMapper.updateById(driverUser);
         return true;
     }
@@ -162,6 +161,10 @@ public class DriverUserService {
 
             return ResponseResult.success(orderDriverResponse);
         }
+    }
+
+    public int getDriverCount(){
+        return driverUserMapper.getDriverCount();
     }
 
 }

@@ -133,4 +133,9 @@ public class OrderInfoController {
         return orderInfoService.getOrderList(orderInfo);
     }
 
+    @GetMapping("/order-count")
+    public int getOrderCount(){
+        return orderInfoService.getOrderCount();
+    }
+
 }

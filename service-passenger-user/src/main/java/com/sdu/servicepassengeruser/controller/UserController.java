@@ -58,4 +58,9 @@ public class UserController {
 
     }
 
+    @GetMapping("/user/passenger-count")
+    public int getPassengerCount(){
+        return userService.getPassengerCount();
+    }
+
 }

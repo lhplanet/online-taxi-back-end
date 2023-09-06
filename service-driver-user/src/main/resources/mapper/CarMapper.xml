@@ -13,6 +13,8 @@
         </if>
     </select>
 
-
+    <select id="getCarCount" resultType="java.lang.Integer">
+        select count(*) from car where state = 0
+    </select>
 
 </mapper>

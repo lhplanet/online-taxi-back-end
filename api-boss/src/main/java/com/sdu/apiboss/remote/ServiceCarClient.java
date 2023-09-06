@@ -28,4 +28,7 @@ public interface ServiceCarClient {
     @RequestMapping(method = RequestMethod.POST, value = "/car/list")
     public List<Car> getCar(@RequestBody Car car);
 
+    @RequestMapping(method = RequestMethod.GET, value = "/car/car-count")
+    public int getCarCount();
+
 }

@@ -18,4 +18,6 @@ public interface DriverUserMapper extends BaseMapper<DriverUser> {
 
     public List<DriverUser> getDriverUserList(@Param("para") DriverUser para);
 
+    public int getDriverCount();
+
 }

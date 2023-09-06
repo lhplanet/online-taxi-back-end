@@ -2,6 +2,7 @@ package com.sdu.apiboss.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sdu.apiboss.config.jwt.JwtUtils;
+import com.sdu.apiboss.service.CountService;
 import com.sdu.apiboss.service.sys_menu.SysMenuService;
 import com.sdu.apiboss.service.sys_user.SysUserService;
 import com.sdu.internalcommon.dto.*;
@@ -34,6 +35,9 @@ public class LoginController {
 
     @Autowired
     private JwtUtils jwtUtils;
+
+    @Autowired
+    private CountService countService;
 
     /**
      * 登录
@@ -166,21 +170,9 @@ public class LoginController {
      * 首页总数统计
      * @return
      */
-/*    @GetMapping("/getHomeCount")
+    @GetMapping("/get-home-count")
     public ResultVo getHomeCount(){
-        CountVo countVo = new CountVo();
-        // 学生总数
-        int stuCount = schoolStudentService.count();
-        countVo.setStuCount(stuCount);
-        // 班级总数
-        int classCount = schoolClassService.count();
-        countVo.setClassCount(classCount);
-        // 专业总数
-        int majorCount = schoolMajorService.count();
-        countVo.setMajorCount(majorCount);
-        // 教师总数
-        int teacherCount = schoolTeacherService.count();
-        countVo.setTeacherCount(teacherCount);
+        CountVo countVo = countService.getHomeCount();
         return ResultUtils.success("查询成功!",countVo);
-    }*/
+    }
 }
